@@ -7,8 +7,8 @@ public class Date {
 
     public Date(int day, int month, int year) {
         setDay(day);
-        this.month = month;
-        this.year = year;
+        setMonth(month);
+        setYear(year);
     }
 
     public void displayDate() {
@@ -32,11 +32,19 @@ public class Date {
     }
 
     public void setMonth(int month) {
-        this.month = month;
+        if (month < 1 || month > 12) {
+            throw new RuntimeException("Invalid month!");
+        } else {
+            this.month = month;
+        }
     }
 
     public void setYear(int year) {
-        this.year = year;
+        if (year < 1 || year > 2024) {
+            throw new RuntimeException("Invalid year!");
+        } else {
+            this.year = year;
+        }
     }
 
     public int getDay() {

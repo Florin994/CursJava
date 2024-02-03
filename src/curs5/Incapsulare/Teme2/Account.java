@@ -4,12 +4,20 @@ public class Account {
     private double balance;
 
     public Account(double balance) {
-        this.balance = balance;
+        setBalance(balance);
+    }
+
+    public void setBalance(double balance) {
+        if (balance < 0) {
+            throw new RuntimeException("Balance can not be set as negative!");
+        } else {
+            this.balance = balance;
+        }
     }
 
     public void debit(double debitSum) {
         if (debitSum > balance || debitSum <= 0) {
-            System.out.println("The debit amount exceeded the account balance!");
+            throw new RuntimeException("The debit amount exceeded the account balance!");
         } else {
             balance -= debitSum;
         }
@@ -19,7 +27,7 @@ public class Account {
         if (balance > 0) {
             this.balance += balance;
         } else {
-            System.out.println("You can not add a negative balance!");
+            throw new RuntimeException("You can not add a negative balance!");
         }
     }
 
