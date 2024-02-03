@@ -1,0 +1,43 @@
+package curs6.Tema1;
+
+public class Clock {
+    private String hour;
+
+    public Clock(String hour) {
+        serHour(hour);
+    }
+
+    public void serHour(String hour) {
+        String[] parts = hour.split(":");
+        String hours = parts[0];
+        String minutes = parts[1];
+        String seconds = parts[2];
+        StringBuilder sec = new StringBuilder();
+        String secondsOnly = String.valueOf(sec.append(seconds.charAt(0)).append(seconds.charAt(1)));
+        StringBuilder type = new StringBuilder();
+        String typeOfMerridie = String.valueOf(type.append(seconds.charAt(seconds.length() - 2)).append(seconds.charAt(seconds.length() - 1)));
+        if (typeOfMerridie.equalsIgnoreCase("PM")) {
+            hours = switch (hours) {
+                case "01" -> "13";
+                case "02" -> "14";
+                case "03" -> "15";
+                case "04" -> "16";
+                case "05" -> "17";
+                case "06" -> "18";
+                case "07" -> "19";
+                case "08" -> "20";
+                case "09" -> "21";
+                case "10" -> "22";
+                case "11" -> "23";
+                case "12" -> "24";
+                default -> hours;
+            };
+        }
+        this.hour = (hours + ":" + minutes + ":" + secondsOnly);
+    }
+
+    public void print() {
+        System.out.println(hour);
+    }
+}
+

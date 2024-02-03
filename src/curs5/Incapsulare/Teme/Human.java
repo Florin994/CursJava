@@ -1,6 +1,7 @@
 package curs5.Incapsulare.Teme;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Human {
     private String name;
@@ -9,10 +10,33 @@ public class Human {
     private ArrayList<Human> children;
 
     public Human(String name, int age, boolean sex) {
-        this.name = name;
-        this.age = age;
-        this.sex = sex;
+        setName(name);
+        setAge(age);
+        setSex(sex);
         this.children = new ArrayList<>();
+    }
+
+    public void setName(String name) {
+        for (int i = 0; i < name.length(); i++) {
+            char c = name.charAt(i);
+            if (!Character.isLetter(c)) {
+                throw new RuntimeException("Invalid name format!");
+            } else {
+                this.name = name;
+            }
+        }
+    }
+
+    public void setAge(int age) {
+        if (age < 1 || age > 120) {
+            throw new RuntimeException("The age is invalid!");
+        } else {
+            this.age = age;
+        }
+    }
+
+    public void setSex(boolean sex) {
+        this.sex = sex;
     }
 
     public void addChild(Human child) {
@@ -29,10 +53,8 @@ public class Human {
         text.append(", sex: ").append(this.sex ? "male" : "female");
         text.append(", age: ").append(this.age);
         int childCount = this.children.size();
-
         if (childCount > 0) {
             text.append(", children: ").append(this.children.get(0).name);
-
             for (int i = 1; i < childCount; i++) {
                 Human child = this.children.get(i);
                 text.append(", ").append(child.name);
@@ -40,5 +62,4 @@ public class Human {
         }
         return text.toString();
     }
-
 }
