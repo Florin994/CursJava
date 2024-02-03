@@ -25,7 +25,7 @@ public class Date {
 
     public void setDay(int day) {
         if (day > 31 || day <= 0) {
-            System.out.println("The day is not a valid date!");
+            throw new InvalidDayException("Invalid day!");
         } else {
             this.day = day;
         }
